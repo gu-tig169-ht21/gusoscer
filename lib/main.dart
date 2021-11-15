@@ -152,7 +152,7 @@ Widget item(String toDo, bool done) {
         ),
         body: Center(
           child: Column(
-            //mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               _square(70),
