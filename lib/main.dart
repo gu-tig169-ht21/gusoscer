@@ -162,6 +162,7 @@ Widget item(String toDo, bool done) {
                 child: Text("Add activity"),
                 ),
                 Icon(Icons.add),
+                Icon(Icons.dangerous),
                 
             ],
             ),
