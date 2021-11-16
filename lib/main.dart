@@ -163,7 +163,8 @@ Widget item(String toDo, bool done) {
                 ),
                 Icon(Icons.add),
                 Icon(Icons.dangerous),
-                
+                Icon(Icons.delete),
+                Icon(Icons.delete_outline),
             ],
             ),
           ),
