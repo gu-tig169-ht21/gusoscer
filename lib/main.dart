@@ -1,28 +1,42 @@
 import 'package:flutter/material.dart';
+import 'package:my_first_app/model.dart';
 
 void main() {
   runApp(
-    const MaterialApp(
-      title: 'ToDo',
-      home: HomePage(),
-    ),
-  );
+     MyApp());
+    
+  
 }
-
-class HomePage extends StatelessWidget {
-  const HomePage({Key? key}) : super(key: key);
+class MyApp extends StatelessWidget {
+  static final String title = "checkbox list";
 
   @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        //leading: const IconButton(
-        //  icon: Icon(Icons.menu),
-        //  tooltip: 'Navigation menu',
-        //  onPressed: null,
-        //),
-        title: const Text('ToDo TIG169'),
-        actions: [
+  Widget build(BuildContext context) => MaterialApp(
+    debugShowCheckedModeBanner: false,
+    title: title,
+    home: MainPage(),
+    );
+}
+class MainPage extends StatefulWidget {
+  @override
+  _MainPageState createState() => _MainPageState();
+
+  
+}
+class _MainPageState extends State<MainPage> {
+  //bool value = false;
+
+  final notifications = [
+    CheckboxState(title: "test"),
+    CheckboxState(title: "cat"),
+    CheckboxState(title: "nice"),
+  ];
+
+  Widget build(BuildContext context) => Scaffold(
+    appBar: AppBar(
+      title: Text("ToDo TIG169"),
+      //centerTitle: true,
+      actions: [
           PopupMenuButton<int>(
             onSelected: (item) => onSelected(context, item),
             itemBuilder: (context) => [
@@ -38,40 +52,19 @@ class HomePage extends StatelessWidget {
                 value: 0,
                 child: Text("undone"),
               ),
-            ],
-         ),
-          
-          /*IconButton(
-            icon: Icon(Icons.menu),
-            tooltip: 'filter',
-            //onPressed: () {
-             // Navigator.push(
-              //  context, MaterialPageRoute(builder: (context) => SecondView()));
-             
-              },
-          ), */
-        ],
-      ),
-      body: Center(
-        child: Column(
-          children: [
-            Container(height: 20),
-            item('pet cat', false),
-            const Divider(),
-            item('feed cat', true),
-            const Divider(),
-            item('annoy cat', true),
-            const Divider(),
-            item('being nice', false),
-            const Divider(),
-            item('test', false),
-            const Divider(),
-            //_checkboxRowFalse(), nice att ha sen
-            //_checkboxRowTrue(),
-    ],
-  )      
-      ),
-      floatingActionButton: FloatingActionButton(
+            ]
+          ),
+            ]
+    ),
+      body: ListView(
+      padding: EdgeInsets.all(12),
+      children: [
+        ...notifications.map(buildSingleCheckbox).toList(),
+        
+      ],
+      
+    ),
+    floatingActionButton: FloatingActionButton(
         tooltip: 'Add activity', 
         child: Icon(Icons.add),
         onPressed: () {
@@ -80,9 +73,22 @@ class HomePage extends StatelessWidget {
               },
       
       ),
-    );
-  }
+  );
+
+  Widget buildSingleCheckbox(CheckboxState checkbox) => CheckboxListTile(
+          controlAffinity: ListTileControlAffinity.leading,
+          value: checkbox.value,
+          title: Text(
+            checkbox.title,
+            style: TextStyle(fontSize: 20),
+            ),
+          onChanged: (value) => setState(() {
+            checkbox.value = value!;
+          }),
+        );
 }
+
+
 
 void onSelected(BuildContext context, int item) {
   switch (item) {
@@ -152,7 +158,7 @@ Widget item(String toDo, bool done) {
         ),
         body: Center(
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
+            //mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               _square(70),
@@ -162,10 +168,7 @@ Widget item(String toDo, bool done) {
                 child: Text("Add activity"),
                 ),
                 Icon(Icons.add),
-                Icon(Icons.dangerous),
-                Icon(Icons.delete),
-                Icon(Icons.delete_outline),
-                Icon(Icons.add_alarm),
+                
             ],
             ),
           ),
@@ -210,4 +213,3 @@ Widget item(String toDo, bool done) {
       ],
     );
   }
-//test steg2
