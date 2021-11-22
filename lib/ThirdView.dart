@@ -1,5 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:my_first_app/model.dart';
+import './model.dart';
+import './main.dart';
+import './TodoList.dart';
 
+/*
 class ThirdView extends StatelessWidget {
     @override
     Widget build(BuildContext context) {
@@ -9,35 +14,27 @@ class ThirdView extends StatelessWidget {
         ),
         body: Center(
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
+            //mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               _square(70),
-              //TextField(decoration: InputDecoration(hintText: "What are you going to do?"),),
-              Container(
-                margin: EdgeInsets.only(top: 26),
-                
-                child: Text("Add activity"),
-                /*TextButton(
-                  child: Text("Add activity"),
+              TextButton(
+                  child: Text("Add activity \n          +"),
                   onPressed: () {
-                    Navigator.pop()
-                  },*/
-                )
-            
-            ,
-                
+                    //CheckboxState.add(notifications(title: "usr input"));
+
+                    Navigator.pop(context);
+                  },
+                ),
                 Icon(Icons.add),
-                Icon(Icons.dangerous),
-                Icon(Icons.delete),
-                Icon(Icons.delete_outline),
-                Icon(Icons.add_alarm),
+              //TextField(decoration: InputDecoration(hintText: "What are you going to do?"),),
             ],
             ),
           ),
         );
     }
   }
+*/
 
 Widget _square(double height) {
     return Container(
@@ -53,3 +50,58 @@ Widget _square(double height) {
       
     );
   }
+
+/*
+class NewTodo extends StatefulWidget {
+  final CheckboxState uppgift;
+
+  NewTodo(this.uppgift);
+
+  @override
+  State<StatefulWidget> createState() {
+    return NewTodoState(uppgift);
+  }
+}
+
+class NewTodoState extends State<NewTodo> {
+  late String message;
+
+  late TextEditingController textEditingController;
+
+  NewTodoState(Todo uppgift) {
+    this.message = uppgift.message;
+
+    textEditingController = TextEditingController();
+
+    textEditingController.addListener(() {
+      setState(() {
+        message = textEditingController.text;
+      });
+    });
+  }
+
+Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("TIG169 TODO"),
+      ),
+      body: Center(
+          child: Column(
+        children: [
+          Container(
+            height: 30),
+          TextField(
+            controller: textEditingController),
+          Container(height: 30),
+          ElevatedButton(
+            child: const Text("+ ADD"),
+            onPressed: () {
+              Navigator.pop(context, Todo(message: message));
+            },
+          ),
+        ],
+      )),
+    );
+  }
+}
+*/
