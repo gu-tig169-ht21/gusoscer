@@ -1,92 +1,156 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:my_first_app/model.dart';
+
+import './ThirdView.dart';
+import './model.dart';
+import './TodoList.dart';
+import './NewTodo.dart';
+import './MainView.dart';
 
 void main() {
+  var state = Mystate();
+
   runApp(
-    const MaterialApp(
-      title: 'ToDo',
-      home: HomePage(),
+    ChangeNotifierProvider(
+      create: (context) => state,
+      child: MyApp(),
     ),
   );
 }
 
-class HomePage extends StatelessWidget {
-  const HomePage({Key? key}) : super(key: key);
-
+class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        //leading: const IconButton(
-        //  icon: Icon(Icons.menu),
-        //  tooltip: 'Navigation menu',
-        //  onPressed: null,
-        //),
-        title: const Text('ToDo TIG169'),
-        actions: [
+    return MaterialApp(
+      theme: ThemeData(
+        primarySwatch: Colors.blueGrey,
+      ),
+      debugShowCheckedModeBanner: false,
+      home: const MainView(),
+    );
+  }
+}
+
+
+
+
+
+/*void main() {
+  runApp(
+     MyApp());
+    
+  
+}
+class MyApp extends StatelessWidget {
+  static final String title = "ToDo TIG169";
+
+  @override
+  Widget build(BuildContext context) => MaterialApp(
+    debugShowCheckedModeBanner: false,
+    title: title,
+    home: MainPage(),
+    );
+}
+class MainPage extends StatefulWidget {
+  @override
+  _MainPageState createState() => _MainPageState();
+
+  
+}
+class _MainPageState extends State<MainPage> {
+  //bool value = false;
+
+  final notifications = [
+    CheckboxState(title: "test"),
+    CheckboxState(title: "cat"),
+    CheckboxState(title: "nice"),
+  ];
+
+  Widget build(BuildContext context) => Scaffold(
+    appBar: AppBar(
+      title: Text("ToDo TIG169"),
+      //centerTitle: true,
+      actions: [
           PopupMenuButton<int>(
             onSelected: (item) => onSelected(context, item),
             itemBuilder: (context) => [
               PopupMenuItem<int>(
                 value: 0,
-                child: Text("all"),
+                child: Text("All"),
               ),
               PopupMenuItem<int>(
                 value: 0,
-                child: Text("done"),
+                child: Text("Done"),
               ),
               PopupMenuItem<int>(
                 value: 0,
-                child: Text("undone"),
+                child: Text("Undone"),
               ),
-            ],
-         ),
-          
-          /*IconButton(
-            icon: Icon(Icons.menu),
-            tooltip: 'filter',
-            //onPressed: () {
-             // Navigator.push(
-              //  context, MaterialPageRoute(builder: (context) => SecondView()));
-             
-              },
-          ), */
-        ],
-      ),
-      body: Center(
-        child: Column(
-          children: [
-            Container(height: 20),
-            item('pet cat', false),
-            const Divider(),
-            item('feed cat', true),
-            const Divider(),
-            item('annoy cat', true),
-            const Divider(),
-            item('being nice', false),
-            const Divider(),
-            item('test', false),
-            const Divider(),
-            //_checkboxRowFalse(), nice att ha sen
-            //_checkboxRowTrue(),
-    ],
-  )      
-      ),
-      floatingActionButton: FloatingActionButton(
+            ]
+          ),
+            ]
+    ),
+      body: ListView(
+      padding: EdgeInsets.all(12),
+      children: [
+        ...notifications.map(buildSingleCheckbox).toList(),
+        
+      ],
+      
+    ),
+    floatingActionButton: FloatingActionButton(
         tooltip: 'Add activity', 
         child: Icon(Icons.add),
         onPressed: () {
               Navigator.push(
-                context, MaterialPageRoute(builder: (context) => ThirdView()));
+                context, MaterialPageRoute(builder: (context) => NewTodo(CheckboxState(title: "input"))));
               },
       
       ),
-    );
-  }
+  );
+
+  Widget buildSingleCheckbox(CheckboxState checkbox) => CheckboxListTile(
+          controlAffinity: ListTileControlAffinity.leading,
+          secondary: Icon(Icons.delete),
+          value: checkbox.value,
+          title: Text(
+            checkbox.title,
+            style: TextStyle(fontSize: 22),
+            ),
+          onChanged: (value) => setState(() {
+            checkbox.value = value!;
+          }),
+        );
 }
+*/
+List<Todo> _filterList(list, value) {
+    if (value == 1) return list;
+    if (value == 2) {
+      return list.where((uppgift) => uppgift.klar == true).toList();
+    }
+    if (value == 3) {
+      return list.where((uppgift) => uppgift.klar == false).toList();
+    }
+    return list;
+  }
+
 
 void onSelected(BuildContext context, int item) {
   switch (item) {
     case 0:
+      Navigator.push(
+        context, MaterialPageRoute(builder: (context) => MainView())
+      );
+      break;
+
+      /*case 1:
+      Navigator.push(
+        context, MaterialPageRoute (builder: (context, state) => TodoList(_filterList(state.list, state.filterBy))
+      );
+      break;
+      */
+      case 2:
       Navigator.push(
         context, MaterialPageRoute(builder: (context) => SecondView())
       );
@@ -140,48 +204,6 @@ Widget item(String toDo, bool done) {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Text(text, style: TextStyle(fontSize: 16)),
-    );
-  }
-
-  class ThirdView extends StatelessWidget {
-    @override
-    Widget build(BuildContext context) {
-      return Scaffold(
-        appBar: AppBar(
-          title: const Text('ToDo TIG169'),
-        ),
-        body: Center(
-          child: Column(
-            //mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              _square(70),
-              //TextField(decoration: InputDecoration(hintText: "What are you going to do?"),),
-              Container(
-                margin: EdgeInsets.only(top: 26),
-                child: Text("Add activity"),
-                ),
-                Icon(Icons.add),
-                
-            ],
-            ),
-          ),
-        );
-    }
-  }
-
-  Widget _square(double height) {
-    return Container(
-      padding: EdgeInsets.all(20),
-      width: 350,
-      height: height,
-      margin: EdgeInsets.fromLTRB(20, 40, 20, 0),
-      decoration: BoxDecoration(
-        //color: Colors.blue,
-        borderRadius: BorderRadius.all(Radius.circular(10)),
-        border: Border.all(width: 2, color: Colors.black),),
-        child: TextField(decoration: InputDecoration(hintText: "What are you going to do?"),)
-      
     );
   }
 
