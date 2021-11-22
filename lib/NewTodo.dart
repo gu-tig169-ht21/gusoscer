@@ -3,13 +3,13 @@ import 'package:flutter/material.dart';
 import 'model.dart';
 
 class NewTodo extends StatefulWidget {
-  final Todo uppgift;
+  final Todo activity;
 
-  NewTodo(this.uppgift);
+  NewTodo(this.activity);
 
   @override
   State<StatefulWidget> createState() {
-    return NewTodoState(uppgift);
+    return NewTodoState(activity);
   }
 }
 
@@ -18,8 +18,8 @@ class NewTodoState extends State<NewTodo> {
 
   late TextEditingController textEditingController;
 
-  NewTodoState(Todo uppgift) {
-    this.title = uppgift.title!; //utropstecken eller ej?
+  NewTodoState(Todo activity) {
+    this.title = activity.title!; //utropstecken eller ej?
 
     textEditingController = TextEditingController();
 

@@ -127,10 +127,10 @@ class _MainPageState extends State<MainPage> {
 List<Todo> _filterList(list, value) {
     if (value == 1) return list;
     if (value == 2) {
-      return list.where((uppgift) => uppgift.klar == true).toList();
+      return list.where((activity) => activity.klar == true).toList();
     }
     if (value == 3) {
-      return list.where((uppgift) => uppgift.klar == false).toList();
+      return list.where((activity) => activity.klar == false).toList();
     }
     return list;
   }
