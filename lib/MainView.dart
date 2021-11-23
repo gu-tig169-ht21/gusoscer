@@ -3,7 +3,7 @@ import 'package:provider/provider.dart';
 
 import './TodoList.dart';
 import './NewTodo.dart';
-import 'model.dart';
+import './model.dart';
 
 class MainView extends StatelessWidget {
   const MainView({Key? key}) : super(key: key);

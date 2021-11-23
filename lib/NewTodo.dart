@@ -40,17 +40,23 @@ class NewTodoState extends State<NewTodo> {
         children: [
           Container(
             height: 30,
+            
+            
+            ),
+          Container(
             width: 350,
             padding: EdgeInsets.all(20),
-            ),
-          TextField(
-            controller: textEditingController,
-            decoration: const InputDecoration(
-              hintText: "What needs to be done?",
-              border: OutlineInputBorder(),
+            margin: EdgeInsets.fromLTRB(20, 5, 20, 0),
+              child:
+                TextField(
+                  controller: textEditingController,
+                  decoration: const InputDecoration(
+                  hintText: "What needs to be done?",
+                  border: OutlineInputBorder(),
             ),
           ),
-          Container(height: 30),
+          ),
+          
           ElevatedButton(
             child: const Text("+ Add activity"),
             onPressed: () {
