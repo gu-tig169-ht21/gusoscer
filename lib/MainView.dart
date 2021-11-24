@@ -3,7 +3,7 @@ import 'package:provider/provider.dart';
 
 import './TodoList.dart';
 import './NewTodo.dart';
-import './model.dart';
+import './Model.dart';
 
 class MainView extends StatelessWidget {
   const MainView({Key? key}) : super(key: key);
@@ -35,7 +35,8 @@ class MainView extends StatelessWidget {
           var nyactivity = await Navigator.push(
             context,
             MaterialPageRoute(
-                builder: (context) => NewTodo(Todo(title: "Empty ToDo"))),
+                builder: (context) => NewTodo(Todo(
+                  title: "Empty ToDo"))),
           );
           if (nyactivity != null) {
             Provider.of<Mystate>(context, listen: false).add_activity(nyactivity);

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import 'model.dart';
+import './Model.dart';
 
 class TodoList extends StatelessWidget {
   final List<Todo> list;
@@ -22,7 +22,7 @@ class TodoList extends StatelessWidget {
         icon: const Icon(Icons.delete),
         onPressed: () {
           var state = Provider.of<Mystate>(context, listen: false);
-          state.remove_activity(activity);
+          state.remove_activityApi(activity);  //remove_activity ändrades till remove_activityApi
         },
       ),
       controlAffinity: ListTileControlAffinity.leading,

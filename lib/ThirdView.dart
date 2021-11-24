@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:my_first_app/model.dart';
-import './model.dart';
+import 'package:my_first_app/Model.dart';
+import './Model.dart';
 import './main.dart';
 import './TodoList.dart';
 

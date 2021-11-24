@@ -1,15 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:my_first_app/model.dart';
+import 'package:my_first_app/Model.dart';
+import 'package:http/http.dart' as http;
 
 import './ThirdView.dart';
-import './model.dart';
+import './Model.dart';
 import './TodoList.dart';
 import './NewTodo.dart';
 import './MainView.dart';
+import './Network.dart';
 
 void main() {
   var state = Mystate();
+  state.getList();
 
   runApp(
     ChangeNotifierProvider(
@@ -27,9 +30,10 @@ class MyApp extends StatelessWidget {
         ThemeData(
           primarySwatch: Colors.blueGrey,
           //brightness: Brightness.dark, todo -> dark theme och mysigt:)
+          //visualDensity: VisualDensity.adaptivePlatformDensity, kanske är cool
       ),
       debugShowCheckedModeBanner: false,
-      home: const MainView(),
+      home: const MainView(), //kanske ej får va const?
     );
   }
 }

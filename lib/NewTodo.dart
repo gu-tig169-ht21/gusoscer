@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'model.dart';
+import './Model.dart';
 
 class NewTodo extends StatefulWidget {
   final Todo activity;
@@ -37,7 +37,10 @@ class NewTodoState extends State<NewTodo> {
       ),
       body: Center(
           child: Column(
+            
         children: [
+          
+          Text("ip"),
           Container(
             height: 30,
             
@@ -60,7 +63,9 @@ class NewTodoState extends State<NewTodo> {
           ElevatedButton(
             child: const Text("+ Add activity"),
             onPressed: () {
-              Navigator.pop(context, Todo(title: title));
+              Navigator.pop(
+                context, 
+                Todo(title: title));
             },
           ),
         ],
