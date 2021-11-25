@@ -17,7 +17,9 @@ class TodoList extends StatelessWidget {
   Widget _activityitem(context, activity) {
     var state = Provider.of<Mystate>(context, listen: false);
     return CheckboxListTile(
-      title: Text(activity.title),
+      title: Text(activity.title,
+       style: TextStyle(decoration: activity.done ? TextDecoration.lineThrough : null),
+       ), 
       secondary: IconButton(
         icon: const Icon(Icons.delete),
         onPressed: () {
@@ -28,7 +30,7 @@ class TodoList extends StatelessWidget {
       controlAffinity: ListTileControlAffinity.leading,
       value: activity.done,
       onChanged: (value) {
-        state.done(activity);
+        state.toggle_ActivityApi(activity);
       },
     );
   }

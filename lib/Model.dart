@@ -63,32 +63,38 @@ class Mystate extends ChangeNotifier {
     _list = list;
     notifyListeners();
   }
-
+  /*
   void add_activity(Todo activity) {
     _list.add(activity);
     notifyListeners();
   }
-
+*/
   void add_activityApi(Todo activity) async {
     _list = await Api.add_activityApi(activity);
     notifyListeners();
   }
-
+/*
   void remove_activity(Todo activity) {
     _list.remove(activity);
     notifyListeners();
   }
-
+*/
   void remove_activityApi(Todo activity) async {
     _list = await Api.delete_ActivityApi(activity.id);
     notifyListeners();
   }
 
+  void toggle_ActivityApi(Todo activity) async {
+    activity.toggleDone(activity);
+    _list = await Api.put_ActivityApi(activity);
+    notifyListeners();
+  }
+/*
   void done(Todo activity) {        //gör samma funktion fast med api -> gör liknande funktion i network som delete 
     activity.toggleDone(activity);  //-> lägga till i get_listApi if true toggleDone
     notifyListeners();
   }
-
+*/
   void setFilterBy(int filterBy) async {
     _filterBy = filterBy;
     notifyListeners();
