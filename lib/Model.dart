@@ -84,8 +84,8 @@ class Mystate extends ChangeNotifier {
     notifyListeners();
   }
 
-  void done(Todo activity) {
-    activity.toggleDone(activity);
+  void done(Todo activity) {        //gör samma funktion fast med api -> gör liknande funktion i network som delete 
+    activity.toggleDone(activity);  //-> lägga till i get_listApi if true toggleDone
     notifyListeners();
   }
 

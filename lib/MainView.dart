@@ -28,7 +28,7 @@ class MainView extends StatelessWidget {
       ),
       body: Consumer<Mystate>(
           builder: (context, state, child) =>
-              TodoList(_filterList(state.list, state.filterBy))),
+               TodoList(_filterList(state.list, state.filterBy))),
       floatingActionButton: FloatingActionButton(
         child: const Icon(Icons.add),
         onPressed: () async {
@@ -39,7 +39,7 @@ class MainView extends StatelessWidget {
                   title: "Empty ToDo"))),
           );
           if (nyactivity != null) {
-            Provider.of<Mystate>(context, listen: false).add_activity(nyactivity);
+            Provider.of<Mystate>(context, listen: false).add_activityApi(nyactivity); //kanske bara add_activity
           }
         },
       ),

@@ -65,7 +65,8 @@ class NewTodoState extends State<NewTodo> {
             onPressed: () {
               Navigator.pop(
                 context, 
-                Todo(title: title));
+                Todo(
+                  title: title));
             },
           ),
         ],
