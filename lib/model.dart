@@ -22,7 +22,7 @@ class Todo {
 
   Todo({this.title, this.done = false});
 
-  void toggleDone(Todo uppgift) {
+  void toggleDone(Todo activity) {
     done = !done;
   }
 }
@@ -35,18 +35,18 @@ class Mystate extends ChangeNotifier {
 
   int get filterBy => _filterBy;
 
-  void adduppgift(Todo uppgift) {
-    _list.add(uppgift);
+  void add_activity(Todo activity) {
+    _list.add(activity);
     notifyListeners();
   }
 
-  void removeuppgift(Todo uppgift) {
-    _list.remove(uppgift);
+  void remove_activity(Todo activity) {
+    _list.remove(activity);
     notifyListeners();
   }
 
-  void done(Todo uppgift) {
-    uppgift.toggleDone(uppgift);
+  void done(Todo activity) {
+    activity.toggleDone(activity);
     notifyListeners();
   }
 

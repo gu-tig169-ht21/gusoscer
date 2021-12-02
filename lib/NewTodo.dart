@@ -1,15 +1,15 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'model.dart';
+import './Model.dart';
 
 class NewTodo extends StatefulWidget {
-  final Todo uppgift;
+  final Todo activity;
 
-  NewTodo(this.uppgift);
+  NewTodo(this.activity);
 
   @override
   State<StatefulWidget> createState() {
-    return NewTodoState(uppgift);
+    return NewTodoState(activity);
   }
 }
 
@@ -18,8 +18,8 @@ class NewTodoState extends State<NewTodo> {
 
   late TextEditingController textEditingController;
 
-  NewTodoState(Todo uppgift) {
-    this.title = uppgift.title!; //utropstecken eller ej?
+  NewTodoState(Todo activity) {
+    this.title = activity.title!;
 
     textEditingController = TextEditingController();
 
@@ -39,18 +39,17 @@ class NewTodoState extends State<NewTodo> {
           child: Column(
         children: [
           Container(
-            height: 30,
             width: 350,
             padding: EdgeInsets.all(20),
-            ),
-          TextField(
-            controller: textEditingController,
-            decoration: const InputDecoration(
-              hintText: "What needs to be done?",
-              border: OutlineInputBorder(),
+            margin: EdgeInsets.fromLTRB(20, 35, 20, 0),
+            child: TextField(
+              controller: textEditingController,
+              decoration: const InputDecoration(
+                hintText: "What needs to be done?",
+                border: OutlineInputBorder(),
+              ),
             ),
           ),
-          Container(height: 30),
           ElevatedButton(
             child: const Text("+ Add activity"),
             onPressed: () {
@@ -62,20 +61,3 @@ class NewTodoState extends State<NewTodo> {
     );
   }
 }
-  Widget squareContainer(double height) {
-    return Container(
-      padding: EdgeInsets.all(20),
-      width: 350,
-      height: height,
-      margin: EdgeInsets.fromLTRB(20, 40, 20, 0),
-      decoration: BoxDecoration(
-        //color: Colors.blue,
-        borderRadius: BorderRadius.all(Radius.circular(10)),
-        border: Border.all(width: 1, color: Colors.grey),
-        ),
-        child: TextField(decoration: InputDecoration(hintText: "What are you going to do?"),
-        )
-      
-    );
-  }
-

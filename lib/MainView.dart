@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-
 import './TodoList.dart';
 import './NewTodo.dart';
-import 'model.dart';
+import './Model.dart';
 
 class MainView extends StatelessWidget {
   const MainView({Key? key}) : super(key: key);
@@ -32,13 +31,14 @@ class MainView extends StatelessWidget {
       floatingActionButton: FloatingActionButton(
         child: const Icon(Icons.add),
         onPressed: () async {
-          var nyuppgift = await Navigator.push(
+          var nyactivity = await Navigator.push(
             context,
             MaterialPageRoute(
                 builder: (context) => NewTodo(Todo(title: "Empty ToDo"))),
           );
-          if (nyuppgift != null) {
-            Provider.of<Mystate>(context, listen: false).adduppgift(nyuppgift);
+          if (nyactivity != null) {
+            Provider.of<Mystate>(context, listen: false)
+                .add_activityApi(nyactivity);
           }
         },
       ),
@@ -48,10 +48,10 @@ class MainView extends StatelessWidget {
   List<Todo> _filterList(list, value) {
     if (value == 1) return list;
     if (value == 2) {
-      return list.where((uppgift) => uppgift.done == true).toList();
+      return list.where((activity) => activity.done == true).toList();
     }
     if (value == 3) {
-      return list.where((uppgift) => uppgift.done == false).toList();
+      return list.where((activity) => activity.done == false).toList();
     }
     return list;
   }

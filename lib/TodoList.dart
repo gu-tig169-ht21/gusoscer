@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-
-import 'model.dart';
+import './Model.dart';
 
 class TodoList extends StatelessWidget {
   final List<Todo> list;
@@ -11,24 +10,26 @@ class TodoList extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListView(
         children:
-            list.map((uppgift) => _uppgiftitem(context, uppgift)).toList());
+            list.map((activity) => _activityitem(context, activity)).toList());
   }
 
-  Widget _uppgiftitem(context, uppgift) {
+  Widget _activityitem(context, activity) {
     var state = Provider.of<Mystate>(context, listen: false);
     return CheckboxListTile(
-      title: Text(uppgift.title),
+      title: Text(activity.title,
+       style: TextStyle(decoration: activity.done ? TextDecoration.lineThrough : null),
+       ), 
       secondary: IconButton(
         icon: const Icon(Icons.delete),
         onPressed: () {
           var state = Provider.of<Mystate>(context, listen: false);
-          state.removeuppgift(uppgift);
+          state.remove_activityApi(activity);
         },
       ),
       controlAffinity: ListTileControlAffinity.leading,
-      value: uppgift.done,
+      value: activity.done,
       onChanged: (value) {
-        state.done(uppgift);
+        state.toggle_ActivityApi(activity);
       },
     );
   }
