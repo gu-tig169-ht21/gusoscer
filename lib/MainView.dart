@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-
 import './TodoList.dart';
 import './NewTodo.dart';
 import './Model.dart';
@@ -28,18 +27,18 @@ class MainView extends StatelessWidget {
       ),
       body: Consumer<Mystate>(
           builder: (context, state, child) =>
-               TodoList(_filterList(state.list, state.filterBy))),
+              TodoList(_filterList(state.list, state.filterBy))),
       floatingActionButton: FloatingActionButton(
         child: const Icon(Icons.add),
         onPressed: () async {
           var nyactivity = await Navigator.push(
             context,
             MaterialPageRoute(
-                builder: (context) => NewTodo(Todo(
-                  title: "Empty ToDo"))),
+                builder: (context) => NewTodo(Todo(title: "Empty ToDo"))),
           );
           if (nyactivity != null) {
-            Provider.of<Mystate>(context, listen: false).add_activityApi(nyactivity); //kanske bara add_activity
+            Provider.of<Mystate>(context, listen: false)
+                .add_activityApi(nyactivity);
           }
         },
       ),

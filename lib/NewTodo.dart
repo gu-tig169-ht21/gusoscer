@@ -19,7 +19,7 @@ class NewTodoState extends State<NewTodo> {
   late TextEditingController textEditingController;
 
   NewTodoState(Todo activity) {
-    this.title = activity.title!; //utropstecken eller ej?
+    this.title = activity.title!;
 
     textEditingController = TextEditingController();
 
@@ -37,36 +37,23 @@ class NewTodoState extends State<NewTodo> {
       ),
       body: Center(
           child: Column(
-            
         children: [
-          
-          Text("ip"),
-          Container(
-            height: 30,
-            
-            
-            ),
           Container(
             width: 350,
             padding: EdgeInsets.all(20),
-            margin: EdgeInsets.fromLTRB(20, 5, 20, 0),
-              child:
-                TextField(
-                  controller: textEditingController,
-                  decoration: const InputDecoration(
-                  hintText: "What needs to be done?",
-                  border: OutlineInputBorder(),
+            margin: EdgeInsets.fromLTRB(20, 35, 20, 0),
+            child: TextField(
+              controller: textEditingController,
+              decoration: const InputDecoration(
+                hintText: "What needs to be done?",
+                border: OutlineInputBorder(),
+              ),
             ),
           ),
-          ),
-          
           ElevatedButton(
             child: const Text("+ Add activity"),
             onPressed: () {
-              Navigator.pop(
-                context, 
-                Todo(
-                  title: title));
+              Navigator.pop(context, Todo(title: title));
             },
           ),
         ],
@@ -74,20 +61,3 @@ class NewTodoState extends State<NewTodo> {
     );
   }
 }
-  Widget squareContainer(double height) {
-    return Container(
-      padding: EdgeInsets.all(20),
-      width: 350,
-      height: height,
-      margin: EdgeInsets.fromLTRB(20, 40, 20, 0),
-      decoration: BoxDecoration(
-        //color: Colors.blue,
-        borderRadius: BorderRadius.all(Radius.circular(10)),
-        border: Border.all(width: 1, color: Colors.grey),
-        ),
-        child: TextField(decoration: InputDecoration(hintText: "What are you going to do?"),
-        )
-      
-    );
-  }
-
